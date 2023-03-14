@@ -13,6 +13,12 @@ public class Autor {
 	}
 
 	public void setIme(String ime) {
+		if (ime == null)
+			throw new NullPointerException("Ime ne sme biti null");
+		
+		if (ime.isEmpty())
+			throw new IllegalArgumentException("Ime ne sme biti prazno");
+		
 		this.ime = ime;
 	}
 
@@ -21,6 +27,12 @@ public class Autor {
 	}
 
 	public void setPrezime(String prezime) {
+		if (prezime == null)
+			throw new NullPointerException("Prezime ne sme biti null");
+		
+		if (prezime.isEmpty())
+			throw new IllegalArgumentException("Prezime ne sme biti prazno");
+
 		this.prezime = prezime;
 	}
 
