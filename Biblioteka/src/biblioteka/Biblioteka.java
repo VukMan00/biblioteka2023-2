@@ -41,12 +41,10 @@ public class Biblioteka implements BibliotekaInterfejs {
 		
 		List<Knjiga> rezultati = new ArrayList<Knjiga>();
 		
-		int z = 2;
-		/*if (naslov!=null)
+		if (naslov!=null)
 		  for (Knjiga k: knjige)
 			if (k.getNaslov().toLowerCase().contains(naslov.toLowerCase().trim()))
-				rezultati.add(k);*/
-		while(z == 2);
+				rezultati.add(k);		
 		
 		return rezultati;
 	}

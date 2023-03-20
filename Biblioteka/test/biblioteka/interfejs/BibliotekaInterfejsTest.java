@@ -3,6 +3,7 @@ package biblioteka.interfejs;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
@@ -133,7 +134,7 @@ public abstract class BibliotekaInterfejsTest {
 	
 	
 	@Test
-	@Timeout(3)
+	@Timeout(value = 3, unit = TimeUnit.MILLISECONDS)
 	void testPronadjiKnjiguNaslov() {
 		Knjiga k = new Knjiga();
 		
