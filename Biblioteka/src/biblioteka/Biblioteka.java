@@ -16,6 +16,8 @@ public class Biblioteka implements BibliotekaInterfejs {
 
 	/**
 	 * Lista sa knjigama iz biblioteke - ArrayList implementacija
+	 * 
+	 * @see biblioteka.Knjiga
 	 */
 	private List<Knjiga> knjige = new ArrayList<Knjiga>();
 	
