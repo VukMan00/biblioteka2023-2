@@ -83,4 +83,17 @@ public interface BibliotekaInterfejs {
 	 * @throws IllegalArgumentException ako je uneta putanja fajla prazan String
 	 */
 	public void upisKnjigaUFajl(String putanjaFajla);
+	
+	/**
+	 * Cita knjige iz fajla
+	 * 
+	 * Knjige se dodaju na vec postojece knjige samo ako nisu duplikati
+	 * 
+	 * @param putanjaFajla putanjaFajla iz koje se citaju knjige
+	 * 
+	 * @throws NullPointerException ako je uneta putanja null
+	 * @throws IllegalArgumentException ako je uneta putanja fajla prazan String
+	 */
+	public void citanjeIzFajla(String putanjaFajla);
 }
+

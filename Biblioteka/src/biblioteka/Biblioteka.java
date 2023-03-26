@@ -1,8 +1,11 @@
 package biblioteka;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -80,6 +83,29 @@ public class Biblioteka implements BibliotekaInterfejs {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void citanjeIzFajla(String putanjaFajla) {
+		if(putanjaFajla==null) {
+			throw new NullPointerException("Putanja fajla ne sme biti null");
+		}
+		if(putanjaFajla.isEmpty()) {
+			throw new IllegalArgumentException("Putanja fajla ne sme biti prazan String");
+		}
+		try(FileReader in = new FileReader(putanjaFajla)){
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			List<Knjiga> noveKnjige = Arrays.asList(gson.fromJson(in, Knjiga[].class));
+			
+			for(Knjiga knjiga:noveKnjige) {
+				if(!knjige.contains(knjiga)) {
+					knjige.add(knjiga);
+				}
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
