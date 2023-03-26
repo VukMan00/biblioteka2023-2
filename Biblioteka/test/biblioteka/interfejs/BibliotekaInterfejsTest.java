@@ -182,4 +182,13 @@ public abstract class BibliotekaInterfejsTest {
 		assertTrue( rezultat.contains(k2) );
 	}
 
+	@Test
+	void testUpisKnjigeUFajlSaNull() {
+		assertThrows(NullPointerException.class, ()->biblioteka.upisKnjigaUFajl(null));
+	}
+	
+	@Test
+	void testUpisKnjigeUFajlPrazanString() {
+		assertThrows(IllegalArgumentException.class, ()->biblioteka.upisKnjigaUFajl(""));
+	}
 }

@@ -70,4 +70,17 @@ public interface BibliotekaInterfejs {
 	public List<Knjiga> pronadjiKnjigu(Autor autor, 
 			long isbn, String naslov, String izdavac);
 
+	/**
+	 * Upisuje sve knjige u fajl 
+	 * 
+	 * Fajlovi se mogu ubacivati samo u JSON formatu
+	 * Upis ne sme biti u JSON compact formatu
+	 * Atributi se upisuju tacno kako se nazivaju u klasi
+	 * 
+	 * @param putanjaFajla putanjaFajla u kojoj se upisuju sve knjige
+	 * 
+	 * @throws NullPointerException ako je uneta putanja null
+	 * @throws IllegalArgumentException ako je uneta putanja fajla prazan String
+	 */
+	public void upisKnjigaUFajl(String putanjaFajla);
 }

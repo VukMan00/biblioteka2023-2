@@ -1,7 +1,12 @@
 package biblioteka;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import biblioteka.interfejs.BibliotekaInterfejs;
 
@@ -57,6 +62,24 @@ public class Biblioteka implements BibliotekaInterfejs {
 				rezultati.add(k);		
 		
 		return rezultati;
+	}
+
+	@Override
+	public void upisKnjigaUFajl(String putanjaFajla) {
+		if(putanjaFajla==null) {
+			throw new NullPointerException("Putanja fajla ne sme biti null");
+		}
+		if(putanjaFajla.isEmpty()) {
+			throw new IllegalArgumentException("Putanja fajla ne sme biti prazan String");
+		}
+		try(FileWriter out = new FileWriter(putanjaFajla)){
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			
+			out.write(gson.toJson(knjige));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
