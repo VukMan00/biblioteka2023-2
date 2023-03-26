@@ -273,4 +273,65 @@ public abstract class BibliotekaInterfejsTest {
 	void testCitanjeIzFajlaPrazanString() {
 		assertThrows(IllegalArgumentException.class, ()->biblioteka.citanjeIzFajla(""));
 	}
+	
+	
+	@Test
+	@Timeout(3)
+	void testPronadjiKnjiguSaPutanjomViseNaslova() {
+		Autor autor = new Autor();
+		autor.setIme("Milos");
+		autor.setPrezime("Manojlovic");
+		
+		Autor autor1 = new Autor();
+		autor1.setIme("Milenko");
+		autor1.setPrezime("Milenkovic");
+		
+		List<Autor> autori = new ArrayList<>();
+		autori.add(autor);
+		autori.add(autor1);
+		
+		Knjiga knjiga1 = new Knjiga();
+		knjiga1.setIsbn(543);
+		knjiga1.setNaslov("Ana Marija");
+		knjiga1.setIzdavac("Franc Kafka");
+		knjiga1.setIzdanje(3);
+		knjiga1.setAutori(autori);
+		
+		Knjiga knjiga2 = new Knjiga();
+		knjiga2.setAutori(null);
+		knjiga2.setIsbn(234);
+		knjiga2.setIzdanje(2);
+		knjiga2.setIzdavac("Marivoje");
+		knjiga2.setNaslov("Ana Karenjina");
+		
+		biblioteka.dodajKnjigu(knjiga1);
+		biblioteka.dodajKnjigu(knjiga2);
+		
+		biblioteka.pronadjiKnjigu(null, -1, "Ana", null,"pronadjeneKnjige.json");
+		assertEquals(2, biblioteka.vratiSveKnjige().size());
+		assertTrue(biblioteka.vratiSveKnjige().contains(knjiga1));
+		assertTrue(biblioteka.vratiSveKnjige().contains(knjiga2));
+	}
+	
+	@Test
+	void testPronadjiKnjiguSaPutanjomSaNull() {
+		assertThrows(NullPointerException.class,()->biblioteka.pronadjiKnjigu(null, -1, "Ana", null,null));
+	}
+	
+	@Test
+	void testPronadjiKnjiguSaPutanjomPrazanString() {
+		assertThrows(IllegalArgumentException.class,()->biblioteka.pronadjiKnjigu(null, -1, "Ana", null,""));
+	}
+	
+	@Test
+	void testPronadjiKnjiguSveNullSaPutanjom() {
+		assertThrows(IllegalArgumentException.class ,
+				() -> biblioteka.pronadjiKnjigu(null, -1, null, null,"pronadjeneKnjige.json"));
+	}
+	
+	@Test
+	void testPronadjiKnjiguNaslovNullSaPutanjom() {
+		biblioteka.pronadjiKnjigu(null, 0, null, "Laguna","pronadjeneKnjige.json");
+		assertTrue(biblioteka.vratiSveKnjige().isEmpty());
+	}
 }

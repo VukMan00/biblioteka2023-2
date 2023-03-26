@@ -95,5 +95,27 @@ public interface BibliotekaInterfejs {
 	 * @throws IllegalArgumentException ako je uneta putanja fajla prazan String
 	 */
 	public void citanjeIzFajla(String putanjaFajla);
+	
+	/**
+	 * Pretrazuje biblioteku i vraca sve knjige koje odgovaraju 
+	 * kriterijumima pretrage koji se upisuju u fajl.
+	 * 
+	 * Pretraga se moze vrsiti preko autora, isbn broja, dela naslova i dela naziva izdavaca.
+	 * Pretraga preko autora i isbn broja je tacno kako je uneto,
+	 * dok se pretrazuje prema delu naslova ili delu naziva izdavaca.
+	 * 
+	 * Ako se umesto parametra unese null ili -1 (isbn), taj kriterijum se ne koristi
+	 * u pretrazi.
+	 * 
+	 * @param autor Autor knjige ili null ako se ne pretrazuje po autoru
+	 * @param isbn isbn broj ili -1 ako se ne pretrazuje po isbn broju
+	 * @param naslov deo naslova ili null ako se ne pretrazuje po naslovu
+	 * @param izdavac deo naziva izdavaca ili null ako se ne pretrazuje po izdavacu
+	 * @param putanjaFajla putanjaFajla u kojem se upisuju pretrazene knjige
+	 * 
+	 * @throws NullPointerException ako je uneta putanjaFajla null
+	 * @throws IllegalArgumentException ako nije unet nijedan kriterijum za pretragu
+	 */
+	public void pronadjiKnjigu(Autor autor, long isbn, String naslov, String izdavac, String putanjaFajla);
 }
 

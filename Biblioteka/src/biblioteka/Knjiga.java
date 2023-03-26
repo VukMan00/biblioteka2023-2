@@ -34,12 +34,12 @@ public class Knjiga {
 	/**
 	 * Naziv izdavaca knjige kao String
 	 */
-	private String izdavac;
+	private transient String izdavac;
 
 	/**
 	 * Izdanje knjige kao ceo broj
 	 */
-	private int izdanje;
+	private transient int izdanje;
 
 	/**
 	 * Vraca naslov knjige

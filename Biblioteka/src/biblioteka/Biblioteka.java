@@ -108,4 +108,34 @@ public class Biblioteka implements BibliotekaInterfejs {
 		}
 	}
 
+	@Override
+	public void pronadjiKnjigu(Autor autor, long isbn, String naslov, String izdavac, String putanjaFajla) {
+		if (autor == null && isbn < 0 && naslov == null && izdavac == null) {
+			throw new IllegalArgumentException("Morate uneti bar neki kriterijum za pretragu");
+		}
+		if(putanjaFajla==null) {
+			throw new NullPointerException("Putanja fajla ne sme biti null");
+		}
+		if(putanjaFajla.isEmpty()) {
+			throw new IllegalArgumentException("Putanja fajla ne sme biti prazan String");
+		}
+		
+		List<Knjiga> rezultati = new ArrayList<Knjiga>();
+		
+		if (naslov!=null) {
+		  for (Knjiga k: knjige) {
+			if (k.getNaslov().toLowerCase().contains(naslov.toLowerCase().trim())) {
+				rezultati.add(k);
+			}
+		  }
+		}
+		
+		try(FileWriter out = new FileWriter(putanjaFajla)){
+			Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+			out.write(gson.toJson(rezultati));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
